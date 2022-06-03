@@ -34,10 +34,11 @@ function obtenerfecha()
         <td>${articulo.Valor_Unitario}</td>
         </tr>`;
       }
-      document.getElementById("datostabla").innerHTML = cad; 
-      
+      //document.getElementById("datostabla").innerHTML = cad;  })
+  $("#datostabla").html(cad);
+
     });
-  
+    
     
 }
 
