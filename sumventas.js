@@ -1,5 +1,5 @@
 var xhr = new XMLHttpRequest();
-xhr.open('GET','../php/consultaventas.php');
+xhr.open('GET','../php/consultaventas1.php');
 xhr.onload = function()
 {  
     if (xhr.status == 200)
@@ -7,31 +7,33 @@ xhr.onload = function()
         var json = JSON.parse(xhr.responseText);
         console.log(json)
         
-        var template =``;
-        json.map(function(data){
+        //var template =``;
+        //json.map(function(data){
 
-        template += `
+       // template += `
     
        
-        <tr>
-              <td>${data.Fecha}</td>
-              <td>${data.Producto}</td>
-              <td>${data.Cantidad}</td>
-              <td>${data.Valor_Unitario}</td>
-        </tr>
+       // <h2>${data.total}</h2>
+       // <h3>Descripcion:</h3>
+       // <p>${data.cant}</p><br>
         
-        `;
+       // `;
          
-        return template;
+       // return template;
         
-    });
-
+    //});
     
+  
+    //const group = [json.total, json.cantidad];
+      
         
-    console.log(template);
-    document.getElementById('datostabla').innerHTML = template;
-    //document.getElementById('fecha').innerHTML = "______________";
-    //document.getElementById('img').src = json[0].Producto;
+    //console.log(template);
+    //document.getElementById('datostabla1').innerHTML = template;
+    //document.getElementById('texto').src = json[0].Valor_Total;
+    //document.getElementById('texto1').src = json[0].Cantidad;
+    //document.getElementById('texto').innerHTML= json.total;
+    //document.getElementById('texto1').innerHTML = json.cantidad;
+    
     //document.getElementById('descripcion').innerHTML = json[0].Descripcion + "\ud83e\uddd1" + "</b>";
     //document.getElementById('precio').innerHTML = json[0].Valor_Unitario;
     

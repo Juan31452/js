@@ -1,9 +1,9 @@
 function obtenerfecha()
 {   
     
-    var mes = getElementById("mes").value;
-    var ano = getElementById("ano").value;
-  
+    var mes = document.getElementById("mes").value;
+    var ano = document.getElementById("ano").value;
+    console.log(mes+" "+ano); 
 
     //$.ajax({
      //   data : datosfecha,
