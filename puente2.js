@@ -1,3 +1,26 @@
+function buscar()
+{
+  const aplicacion = document.querySelector(".contenedor3");
+  //const geturl = new URLSearchParams(window.location.search);
+  //idventa = geturl.get(Idventa)
+  const url = "../php/ventas2.php"
+  console.log(url) 
+  fetch(url)
+  .then(response => response.json())
+  .then(datos=> {
+    datos.forEach(ventas => {
+      console.log(ventas.Fecha)
+      const p= document.createElement('p')
+      p.innerHTML = ventas.Fecha  
+      aplicacion.appendChild(p)
+    });
+    //console.log(datos)
+  })
+  .catch(err => console.log(err))
+
+  
+
+}
 function obtenerfecha()
 {   
   //var mes = document.getElementById("mes").value;
@@ -25,18 +48,18 @@ function obtenerfecha()
 			alert(respuesta);
     
       let cad = ' ';
-      for (let articulo of respuesta) 
+      for (let venta of respuesta) 
       {
-        cad += `<tr>
-        <td>${articulo.Fecha}</td>
-        <td>${articulo.Producto}</td>
-        <td>${articulo.Cantidad}</td>
-        <td>${articulo.Valor_Unitario}</td>
+        cadena += `<tr>
+        <td>${venta.Fecha}</td>
+        <td>${venta.Producto}</td>
+        <td>${venta.Cantidad}</td>
+        <td>${venta.Valor_Unitario}</td>
         </tr>`;
       }
-      //document.getElementById("datostabla").innerHTML = cad;  })
-  $("#datostabla").html(cad);
-
+     
+  $("#datostabla").html(cadena);
+  
     });
     
     
