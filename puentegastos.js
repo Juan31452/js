@@ -84,7 +84,7 @@ function obtenerfecha()
 		$.post("../php/consultaventas1.php",{"mes":mes,"ano":ano},function(respuesta){
 
 			alert(respuesta);
-    
+    //Codigo
       let cad = ' ';
       for (let venta of respuesta) 
       {
