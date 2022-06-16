@@ -3,24 +3,62 @@ function buscar()
   const aplicacion = document.querySelector(".contenedor3");
   //const geturl = new URLSearchParams(window.location.search);
   //idventa = geturl.get(Idventa)
-  const url = "../php/ventas2.php"
+  const url = "../php/gastos2.php"
+  let cad = ' ';
+  console.log(url) 
+  fetch(url)
+  .then(response => response.json())
+  .then(datos=> {
+    datos.forEach(gastos => {
+      console.log(gastos.Fecha,gastos.Producto)
+      const p= document.createElement('p')
+      
+      cad += `<tr>
+            <td>${gastos.Fecha}</td>
+            <td>${gastos.Producto}</td>
+            <td>${gastos.Descripcion}</td>
+            <td>${gastos.Valor_Total}</td>
+            </tr>`;
+             console.log(cad)
+      //p.innerHTML = ventas.Fecha
+      document.getElementById("datostabla").innerHTML = cad;    
+      //aplicacion.appendChild(p,p1)
+
+    });
+    
+    //console.log(datos)
+  })
+  .catch(err => console.log(err))
+}
+
+function buscarcalculo()
+{
+  
+  const aplicacion = document.querySelector("#columna");
+  const aplicacion1 = document.querySelector("#columna1");
+  
+  const url = "../php/ventas3.php"
+  let cad = ' ';
   console.log(url) 
   fetch(url)
   .then(response => response.json())
   .then(datos=> {
     datos.forEach(ventas => {
-      console.log(ventas.Fecha)
+      console.log(ventas.Cantidad,ventas.Valor_Unitario)
       const p= document.createElement('p')
-      p.innerHTML = ventas.Fecha  
+      const p1= document.createElement('p')
+      p.innerHTML = ventas.Cantidad
+      p1.innerHTML = ventas.Valor_Unitario
       aplicacion.appendChild(p)
+     aplicacion1.appendChild(p1)
+
     });
+    
     //console.log(datos)
   })
   .catch(err => console.log(err))
-
-  
-
 }
+
 function obtenerfecha()
 {   
   //var mes = document.getElementById("mes").value;
@@ -65,30 +103,3 @@ function obtenerfecha()
     
 }
 
-function listarArticulos() 
-{
-    // Solicitud GET (Request).
-    fetch('../php/consultaventas.php')
-        // Exito
-      //.then(response => response.json())  // convertir a json
-      //.then(json => console.log(json))    //imprimir los datos en la consola
-    //  .catch(err => console.log('Solicitud fallida', err)); // Capturar errores
-    //   fetch("listadoarticulos.php")
-
-        .then(response => response.json())
-        .then(datos => 
-        {
-        
-          let cad = ' ';
-          for (let articulo of datos) 
-          {
-            cad += `<tr>
-            <td>${articulo.Fecha}</td>
-            <td>${articulo.Producto}</td>
-            <td>${articulo.Cantidad}</td>
-            <td>${articulo.Valor_Unitario}</td>
-            </tr>`;
-          }
-          document.getElementById("datostabla").innerHTML = cad;
-        });
-    }        
