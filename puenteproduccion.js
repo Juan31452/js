@@ -37,21 +37,18 @@ function buscarcalculo()
   const aplicacion = document.querySelector("#columna");
   const aplicacion1 = document.querySelector("#columna1");
   
-  const url = "../php/ventas3.php"
+  const url = "../php/produccion3.php"
   let cad = ' ';
   console.log(url) 
   fetch(url)
   .then(response => response.json())
   .then(datos=> {
-    datos.forEach(ventas => {
-      console.log(ventas.Cantidad,ventas.Valor_Unitario)
+    datos.forEach(produccion => {
+      console.log(produccion.Cantidad)
       const p= document.createElement('p')
-      const p1= document.createElement('p')
-      p.innerHTML = ventas.Cantidad
-      p1.innerHTML = ventas.Valor_Unitario
+      p.innerHTML = produccion.Cantidad
       aplicacion.appendChild(p)
-     aplicacion1.appendChild(p1)
-
+     
     });
     
     //console.log(datos)
