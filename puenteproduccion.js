@@ -1,9 +1,40 @@
+function fecha()
+{
+
+  // crea un nuevo objeto `Fecha`
+  var today = new Date();
+ 
+  // `getDate()` devuelve el día del mes (del 1 al 31)
+  var day = today.getDate();
+
+ // `getMonth()` devuelve el mes (de 0 a 11)
+ var month = today.getMonth() + 1;
+  
+ // `getFullYear()` devuelve el año completo
+ var year = today.getFullYear();
+ cadena = 'Mes: '+month+' Año: '+year
+ // muestra la fecha de hoy en formato `MM/DD/YYYY`
+ console.log(`${month}/${day}/${year}`)
+ document.getElementById("mesactual").innerHTML = cadena 
+ //document.getElementById("anoactual").innerHTML = year 
+ console.log(year,month)
+
+}
+
 function buscar()
 {
+   // crea un nuevo objeto `Fecha`
+   var today = new Date();
+
+  var mes = today.getMonth() + 1;
+  var año = today.getFullYear();
+
+  console.log(mes,año)
+  //console.log(mes+" "+ano);
+    
   const aplicacion = document.querySelector(".contenedor3");
-  //const geturl = new URLSearchParams(window.location.search);
   //idventa = geturl.get(Idventa)
-  const url = "../php/produccion2.php"
+  const url = '../php/produccion2.php/?mes='+ mes +'&año='+ año
   let cad = ' ';
   console.log(url) 
   fetch(url)
@@ -31,13 +62,60 @@ function buscar()
   .catch(err => console.log(err))
 }
 
+function buscar1()
+{
+  const boton = document.querySelector("#boton");
+  // Agregar listener 
+  boton.addEventListener("click", function(evento){
+	// Aquí todo el código que se ejecuta cuando se da click al botón
+	alert("Le has dado click");
+});
+////
+var mes = document.getElementById("mes").value;
+  var año = document.getElementById("año").value;
+  console.log(mes,año);
+  
+  const url = '../php/produccion2.php/?mes='+ mes +'&año='+ año
+  let cad = ' ';
+  console.log(url) 
+  fetch(url)
+  .then(response => response.json())
+  .then(datos=> {
+    datos.forEach(produccion => {
+      console.log(produccion.Fecha,produccion.Producto)
+      const p= document.createElement('p')
+      
+      cad += `<tr>
+            <td>${produccion.Fecha}</td>
+            <td>${produccion.Producto}</td>
+            <td>${produccion.Cantidad}</td>
+            <td>${produccion.Lote}</td>
+            </tr>`;
+             console.log(cad)
+      //p.innerHTML = ventas.Fecha
+      document.getElementById("datostabla").innerHTML = cad;    
+      //aplicacion.appendChild(p,p1)
+
+    });
+    
+    //console.log(datos)
+  })
+  .catch(err => console.log(err))
+
+}
+
 function buscarcalculo()
 {
-  
+   // crea un nuevo objeto `Fecha`
+   var today = new Date();
+
+  var mes = today.getMonth() + 1;
+  var año = today.getFullYear();
+
   const aplicacion = document.querySelector("#columna");
   const aplicacion1 = document.querySelector("#columna1");
   
-  const url = "../php/produccion3.php"
+  const url = '../php/produccion3.php/?mes='+ mes +'&año='+ año
   let cad = ' ';
   console.log(url) 
   fetch(url)
