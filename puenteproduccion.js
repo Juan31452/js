@@ -1,6 +1,6 @@
 function fecha()
 {
-
+  
   // crea un nuevo objeto `Fecha`
   var today = new Date();
  
@@ -23,18 +23,15 @@ function fecha()
 
 function buscar()
 {
-   // crea un nuevo objeto `Fecha`
-   var today = new Date();
-
-  var mes = today.getMonth() + 1;
-  var año = today.getFullYear();
-
-  console.log(mes,año)
-  //console.log(mes+" "+ano);
-    
+  
+  var mes = document.getElementById('mes');
+  var año = document.getElementById('año');
+  
+  console.log(mes.value,año.value);
+  
   const aplicacion = document.querySelector(".contenedor3");
   //idventa = geturl.get(Idventa)
-  const url = '../php/produccion2.php/?mes='+ mes +'&año='+ año
+  const url = '../php/produccion2.php/?mes='+ mes.value +'&año='+ año.value
   let cad = ' ';
   console.log(url) 
   fetch(url)
@@ -62,73 +59,39 @@ function buscar()
   .catch(err => console.log(err))
 }
 
-function buscar1()
+function buscar1(event)
 {
-  const boton = document.querySelector("#boton");
-  // Agregar listener 
-  boton.addEventListener("click", function(evento){
-	// Aquí todo el código que se ejecuta cuando se da click al botón
-	alert("Le has dado click");
-});
-////
-var mes = document.getElementById("mes").value;
-  var año = document.getElementById("año").value;
-  console.log(mes,año);
   
-  const url = '../php/produccion2.php/?mes='+ mes +'&año='+ año
-  let cad = ' ';
-  console.log(url) 
-  fetch(url)
-  .then(response => response.json())
-  .then(datos=> {
-    datos.forEach(produccion => {
-      console.log(produccion.Fecha,produccion.Producto)
-      const p= document.createElement('p')
-      
-      cad += `<tr>
-            <td>${produccion.Fecha}</td>
-            <td>${produccion.Producto}</td>
-            <td>${produccion.Cantidad}</td>
-            <td>${produccion.Lote}</td>
-            </tr>`;
-             console.log(cad)
-      //p.innerHTML = ventas.Fecha
-      document.getElementById("datostabla").innerHTML = cad;    
-      //aplicacion.appendChild(p,p1)
-
-    });
-    
-    //console.log(datos)
-  })
-  .catch(err => console.log(err))
-
 }
+////
+
+
 
 function buscarcalculo()
-{
-   // crea un nuevo objeto `Fecha`
-   var today = new Date();
-
-  var mes = today.getMonth() + 1;
-  var año = today.getFullYear();
-
+{  
+  var mes = document.getElementById('mes');
+  var año = document.getElementById('año');
+  
+  console.log(mes.value,año.value);
+  
   const aplicacion = document.querySelector("#columna");
   const aplicacion1 = document.querySelector("#columna1");
   
-  const url = '../php/produccion3.php/?mes='+ mes +'&año='+ año
-  let cad = ' ';
+  const url = '../php/produccion3.php/?mes='+ mes.value +'&año='+ año.value
+  //let cad = ' ';
   console.log(url) 
   fetch(url)
   .then(response => response.json())
   .then(datos=> {
     datos.forEach(produccion => {
-      console.log(produccion.Cantidad)
-      const p= document.createElement('p')
-      p.innerHTML = produccion.Cantidad
-      aplicacion.appendChild(p)
+      console.log('Produccion:',produccion.Cantidad)
+      //const p= document.createElement('p')
+      //p.innerHTML = produccion.Cantidad
+      //aplicacion.appendChild(p)
+      document.getElementById("texto").innerHTML = produccion.Cantidad;
      
     });
-    
+  buscarcalculo()
     //console.log(datos)
   })
   .catch(err => console.log(err))
